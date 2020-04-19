@@ -1,6 +1,8 @@
 require "authentication/version"
+require "authentication/config"
+require "authentication/error"
+require "authentication/user"
 
-module Authentication
-  class Error < StandardError; end
-  # Your code goes here...
+if defined?(Rails)
+  require 'authentication/engine'
 end
