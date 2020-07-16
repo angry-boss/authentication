@@ -2,40 +2,10 @@ require 'minitest/autorun'
 require 'active_record'
 require 'authentication'
 
-ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: ':memory:'
-)
-
-# Define a minimal database schema
-ActiveRecord::Schema.define do
-  create_table :users do |t|
-    t.string :username
-  end
-  
-  create_table :authentication_sessions do |t|
-    t.string :token, :browser_id
-    t.integer :user_id
-    t.boolean :active, :default => true
-    t.text :data
-    t.datetime :expires_at
-    t.datetime :login_at
-    t.string :login_ip
-    t.datetime :last_activity_at
-    t.string :last_activity_ip, :last_activity_path
-    t.string :user_agent
-    t.string :user_type
-    t.integer :parent_id
-    t.string :host
-    t.string :token_hash
-    t.integer :requests, :default => 0
-    t.datetime :password_seen_at
-    t.index :token_hash, :length => 10
-    t.index :user_id
-    t.index :browser_id, :length => 10
-  
-    t.timestamps :null => true
-  end
+ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
+ActiveRecord::Migrator.migrate(File.expand_path('../../db/migrate', __FILE__))
+ActiveRecord::Migration.create_table :users do |t|
+  t.string :username
 end
 
 class User < ActiveRecord::Base

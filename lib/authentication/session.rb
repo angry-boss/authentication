@@ -203,6 +203,20 @@ module Authentication
       true
     end
 
+    # Is two factor authentication required for this request?
+    def two_factored?
+      !!(two_factored_at || self.parent_id)
+    end
+
+    # Mark this request as two factor authoritsed
+    def mark_as_two_factored!
+      self.two_factored_at = Time.now
+      self.two_factored_ip = controller.request.ip
+      self.save!
+      Authentication.config.events.dispatch(:marked_as_two_factored, self)
+      true
+    end
+
     # Have we seen the user's password recently in this sesion?
     def recently_seen_password?
       !!(self.password_seen_at && self.password_seen_at >= Authentication.config.sudo_session_timeout.ago)
