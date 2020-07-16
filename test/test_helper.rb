@@ -1,4 +1,4 @@
-require 'minitest/autorun'
+require "minitest/autorun"
 require 'active_record'
 require 'authentication'
 

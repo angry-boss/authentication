@@ -4,7 +4,11 @@ module Authentication
   module ControllerExtension
 
     def self.included(base)
-      base.helper_method :logged_in?, :current_user, :auth_session
+      #base.helper_method :logged_in?, :current_user, :auth_session
+      # !! helper_method for ActionController::API:Class
+      if respond_to?(:helper_method)
+        base.helper_method :logged_in?, :current_user, :auth_session
+      end
       before_action_method = base.respond_to?(:before_action) ? :before_action : :before_filter
       base.public_send(before_action_method, :set_browser_id, :touch_auth_session)
     end
