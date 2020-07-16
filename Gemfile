@@ -1,9 +1,11 @@
 source "https://rubygems.org"
-gemspec
-gem 'activerecord', '5.2.4.1'
+
+gem 'activerecord', '< 5.2.5'
 
 group :development do
   gem 'rake'
-  gem 'minitest', '~> 5.1'
+  gem 'minitest'
   gem 'sqlite3'
 end
+
+gemspec

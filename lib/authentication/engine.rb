@@ -13,6 +13,5 @@ module Authentication
         include Authentication::ControllerExtension
       end
     end
-
   end
 end

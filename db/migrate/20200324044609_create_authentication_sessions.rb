@@ -21,9 +21,10 @@ class CreateAuthenticationSessions < ActiveRecord::Migration[5.2]
           t.index :token_hash, :length => 10
           t.index :user_id
           t.index :browser_id, :length => 10
-    
+          t.datetime :two_factored_at
+          t.string :two_factored_ip
+
           t.timestamps :null => true
       end
     end
   end
-  

@@ -10,5 +10,7 @@ Gem::Specification.new do |s|
   s.require_path = ["lib"]
   s.summary     = "Authentication"
   s.description = "multiple database's session authentication allows to impersonation of users"
+  s.require_paths = ["lib"]
+
   s.add_dependency  'secure_random_string'
 end
