@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 vendor/
+=======
+.vendor/
+>>>>>>> a5a0624b505007d0d49b4176975f9c0b73c9ec0a
 log/*.log
 pkg/
 test/dummy/db/*.sqlite3
